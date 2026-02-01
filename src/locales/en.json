@@ -1,0 +1,89 @@
+{
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "delete": "Delete",
+    "edit": "Edit",
+    "preview": "Preview",
+    "publish": "Publish",
+    "draft": "Draft",
+    "loading": "Loading...",
+    "noData": "No data",
+    "success": "Success",
+    "error": "Error",
+    "warning": "Warning",
+    "confirmDelete": "Confirm delete?",
+    "undo": "Undo",
+    "redo": "Redo"
+  },
+  "editor": {
+    "title": "Workbench Editor",
+    "untitled": "Untitled Workbench",
+    "empty": {
+      "title": "Start Building Your Workbench",
+      "description": "Drag components from the left or click the buttons below to get started",
+      "addLayout": "Add Layout",
+      "addWidget": "Add Widget"
+    },
+    "dragHint": "Drag components here to start building",
+    "dropHint": "Drop here",
+    "emptyPage": "No pages yet, click the button above to create",
+    "preview": {
+      "title": "Preview",
+      "desktop": "Desktop",
+      "tablet": "Tablet",
+      "mobile": "Mobile"
+    },
+    "responsive": {
+      "xs": "Phone",
+      "sm": "Tablet",
+      "md": "Laptop",
+      "lg": "Desktop",
+      "xl": "Large"
+    },
+    "settings": {
+      "pageTitle": "Page Title",
+      "pageSubtitle": "Subtitle",
+      "showTitle": "Show Title",
+      "titleAlign": "Title Alignment",
+      "padding": "Padding",
+      "backgroundColor": "Background Color",
+      "maxWidth": "Max Width",
+      "alignLeft": "Left",
+      "alignCenter": "Center",
+      "alignRight": "Right"
+    }
+  },
+  "panel": {
+    "layout": "Layout Templates",
+    "components": "Components",
+    "widgets": "Widgets",
+    "data": "Data",
+    "media": "Media",
+    "settings": "Properties",
+    "responsive": "Responsive",
+    "pageSettings": "Page Settings"
+  },
+  "templates": {
+    "singleColumn": "Single Column",
+    "twoColumn": "Two Columns",
+    "threeColumn": "Three Columns",
+    "fourColumn": "Four Columns",
+    "statCard": "Stat Card",
+    "searchForm": "Search Form",
+    "dataTable": "Data Table",
+    "announcementCarousel": "Announcement Carousel",
+    "rankingBoard": "Ranking Board",
+    "hyperlinkWall": "Hyperlink Wall",
+    "newsCard": "News Card",
+    "quickLinks": "Quick Links"
+  },
+  "breakpoints": {
+    "xs": "Extra Small (<480px)",
+    "sm": "Small (576px)",
+    "md": "Medium (768px)",
+    "lg": "Large (992px)",
+    "xl": "Extra Large (1200px)"
+  }
+}

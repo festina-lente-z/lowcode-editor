@@ -1,0 +1,89 @@
+{
+  "common": {
+    "save": "保存",
+    "cancel": "取消",
+    "confirm": "确认",
+    "delete": "删除",
+    "edit": "编辑",
+    "preview": "预览",
+    "publish": "发布",
+    "draft": "草稿",
+    "loading": "加载中...",
+    "noData": "暂无数据",
+    "success": "成功",
+    "error": "错误",
+    "warning": "警告",
+    "confirmDelete": "确认删除？",
+    "undo": "撤销",
+    "redo": "重做"
+  },
+  "editor": {
+    "title": "工作台编辑器",
+    "untitled": "未命名工作台",
+    "empty": {
+      "title": "开始构建您的工作台",
+      "description": "从左侧选择组件拖拽到页面，或点击下方按钮快速开始",
+      "addLayout": "添加布局",
+      "addWidget": "添加组件"
+    },
+    "dragHint": "拖拽组件到这里开始构建页面",
+    "dropHint": "放置到这里",
+    "emptyPage": "暂无页面，点击上方按钮创建",
+    "preview": {
+      "title": "预览",
+      "desktop": "桌面",
+      "tablet": "平板",
+      "mobile": "手机"
+    },
+    "responsive": {
+      "xs": "手机",
+      "sm": "平板",
+      "md": "笔记本",
+      "lg": "桌面",
+      "xl": "大屏"
+    },
+    "settings": {
+      "pageTitle": "页面标题",
+      "pageSubtitle": "副标题",
+      "showTitle": "显示标题",
+      "titleAlign": "标题对齐",
+      "padding": "内边距",
+      "backgroundColor": "背景色",
+      "maxWidth": "最大宽度",
+      "alignLeft": "左对齐",
+      "alignCenter": "居中",
+      "alignRight": "右对齐"
+    }
+  },
+  "panel": {
+    "layout": "布局模板",
+    "components": "功能组件",
+    "widgets": "小组件",
+    "data": "数据组件",
+    "media": "媒体组件",
+    "settings": "属性设置",
+    "responsive": "响应式",
+    "pageSettings": "页面设置"
+  },
+  "templates": {
+    "singleColumn": "单列布局",
+    "twoColumn": "双列布局",
+    "threeColumn": "三列布局",
+    "fourColumn": "四列布局",
+    "statCard": "统计卡片",
+    "searchForm": "搜索表单",
+    "dataTable": "数据表格",
+    "announcementCarousel": "公告轮播",
+    "rankingBoard": "排行榜",
+    "hyperlinkWall": "超链接墙",
+    "newsCard": "资讯展播卡片",
+    "quickLinks": "常用链接卡片"
+  },
+  "breakpoints": {
+    "xs": "超小屏 (<480px)",
+    "sm": "小屏 (576px)",
+    "md": "平板 (768px)",
+    "desktop": "桌面 (992px)",
+    "xl": "大屏 (1200px)"
+  }
+}

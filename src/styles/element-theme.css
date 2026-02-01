@@ -1,0 +1,134 @@
+/* Element Plus Theme - Arco Design Colors */
+/* Important: This file must be loaded AFTER element-plus CSS */
+
+html:root,
+:root {
+  /* Primary Colors - Arco Blue (#165DFF) */
+  --el-color-primary: #165DFF !important;
+  --el-color-primary-light-1: #4080FF !important;
+  --el-color-primary-light-2: #5E97F6 !important;
+  --el-color-primary-light-3: #85B8FF !important;
+  --el-color-primary-light-4: #ADC8FF !important;
+  --el-color-primary-light-5: #D6E4FF !important;
+  --el-color-primary-light-6: #E8F3FF !important;
+  --el-color-primary-light-7: #F0F5FF !important;
+  --el-color-primary-light-8: #F7F9FF !important;
+  --el-color-primary-light-9: #FAFBFF !important;
+  
+  /* Success Colors - Arco Green (#0FC6C2) */
+  --el-color-success: #0FC6C2 !important;
+  --el-color-success-light-1: #0BAFA9 !important;
+  --el-color-success-light-2: #099990 !important;
+  --el-color-success-light-3: #087E77 !important;
+  --el-color-success-light-4: #065F5E !important;
+  --el-color-success-light-5: #054948 !important;
+  --el-color-success-light-6: #043938 !important;
+  --el-color-success-light-7: #032927 !important;
+  --el-color-success-light-8: #021917 !important;
+  --el-color-success-light-9: #010906 !important;
+  
+  /* Warning Colors - Arco Orange (#FFAA00) */
+  --el-color-warning: #FFAA00 !important;
+  --el-color-warning-light-1: #E69100 !important;
+  --el-color-warning-light-2: #B37B00 !important;
+  --el-color-warning-light-3: #806000 !important;
+  --el-color-warning-light-4: #4D3C00 !important;
+  --el-color-warning-light-5: #3D2F00 !important;
+  --el-color-warning-light-6: #2E2200 !important;
+  --el-color-warning-light-7: #1F1700 !important;
+  --el-color-warning-light-8: #0F0A00 !important;
+  --el-color-warning-light-9: #050300 !important;
+  
+  /* Danger Colors - Arco Red (#F53F3F) */
+  --el-color-danger: #F53F3F !important;
+  --el-color-danger-light-1: #D92626 !important;
+  --el-color-danger-light-2: #B01A1A !important;
+  --el-color-danger-light-3: #850E0E !important;
+  --el-color-danger-light-4: #520505 !important;
+  --el-color-danger-light-5: #420404 !important;
+  --el-color-danger-light-6: #310303 !important;
+  --el-color-danger-light-7: #210202 !important;
+  --el-color-danger-light-8: #100101 !important;
+  --el-color-danger-light-9: #050000 !important;
+  
+  /* Info Colors - Arco Blue Light */
+  --el-color-info: #165DFF !important;
+  --el-color-info-light-1: #4080FF !important;
+  --el-color-info-light-2: #5E97F6 !important;
+  --el-color-info-light-3: #85B8FF !important;
+  --el-color-info-light-4: #ADC8FF !important;
+  --el-color-info-light-5: #D6E4FF !important;
+  --el-color-info-light-6: #E8F3FF !important;
+  --el-color-info-light-7: #F0F5FF !important;
+  --el-color-info-light-8: #F7F9FF !important;
+  --el-color-info-light-9: #FAFBFF !important;
+  
+  /* Text Colors */
+  --el-text-color-primary: #1D2129 !important;
+  --el-text-color-regular: #4E5969 !important;
+  --el-text-color-secondary: #86909C !important;
+  --el-text-color-placeholder: #C9CDD4 !important;
+  
+  /* Border Colors */
+  --el-border-color: #E5E6EB !important;
+  --el-border-color-light: #F2F3F5 !important;
+  --el-border-color-lighter: #F7F8FA !important;
+  
+  /* Fill Colors */
+  --el-fill-color-blank: #FFFFFF !important;
+  --el-fill-color: #F7F8FA !important;
+  --el-fill-color-light: #F2F3F5 !important;
+  --el-fill-color-lighter: #E5E6EB !important;
+  
+  /* Background Colors */
+  --el-bg-color: #FFFFFF !important;
+  --el-bg-color-page: #F7F8FA !important;
+  --el-bg-color-overlay: #FFFFFF !important;
+  
+  /* Border Radius */
+  --el-border-radius-base: 6px !important;
+  --el-border-radius-small: 4px !important;
+  --el-border-radius-round: 9999px !important;
+  --el-border-radius-circle: 100% !important;
+  
+  /* Font Family */
+  --el-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif !important;
+}
+
+/* Button overrides */
+.el-button--primary {
+  --el-button-bg-color: #165DFF !important;
+  --el-button-border-color: #165DFF !important;
+  --el-button-hover-bg-color: #4080FF !important;
+  --el-button-hover-border-color: #4080FF !important;
+  --el-button-active-bg-color: #094CD6 !important;
+  --el-button-active-border-color: #094CD6 !important;
+}
+
+/* Link overrides */
+.el-link--primary {
+  --el-link-text-color: #165DFF !important;
+}
+
+/* Tag overrides */
+.el-tag--primary {
+  --el-tag-bg-color: #E8F3FF !important;
+  --el-tag-border-color: #D6E4FF !important;
+  --el-tag-text-color: #165DFF !important;
+}
+
+/* Dark mode support */
+html.dark,
+html.dark :root {
+  --el-color-primary: #165DFF !important;
+  --el-color-primary-light-1: #4080FF !important;
+  --el-color-success: #0FC6C2 !important;
+  --el-color-warning: #FFAA00 !important;
+  --el-color-danger: #F53F3F !important;
+  --el-color-info: #165DFF !important;
+  --el-text-color-primary: #F2F3F5 !important;
+  --el-text-color-regular: #E5E6EB !important;
+  --el-text-color-secondary: #A3A6AD !important;
+  --el-border-color: #4E5969 !important;
+  --el-bg-color: #1D2129 !important;
+}
