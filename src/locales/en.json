@@ -22,12 +22,23 @@
     "untitled": "Untitled Workbench",
     "empty": {
       "title": "Start Building Your Workbench",
-      "description": "Drag components from the left or click the buttons below to get started",
+      "description": "Drag components from the left or click the options below to get started",
       "addLayout": "Add Layout",
-      "addWidget": "Add Widget"
+      "layoutDesc": "Create page layout container that can nest components",
+      "addWidget": "Add Widget",
+      "widgetDesc": "Add functional modules like stat cards, tables, etc.",
+      "tip": "Tip: Drag components from the left to add them quickly"
     },
     "dragHint": "Drag components here to start building",
     "dropHint": "Drop here",
+    "emptyPreview": "No content to preview",
+    "emptyPreviewHint": "Please add components to the page first",
+    "inputPlaceholder": "Enter",
+    "selectPlaceholder": "Select",
+    "submitSuccess": "Submitted successfully",
+    "submitWarning": "Please complete the form information",
+    "undone": "Undone",
+    "redone": "Redone",
     "emptyPage": "No pages yet, click the button above to create",
     "preview": {
       "title": "Preview",
@@ -63,7 +74,14 @@
     "media": "Media",
     "settings": "Properties",
     "responsive": "Responsive",
-    "pageSettings": "Page Settings"
+    "pageSettings": "Page Settings",
+    "basicSettings": "Basic Settings",
+    "componentConfig": "Component Config",
+    "enabled": "Enabled",
+    "disabled": "Disabled",
+    "columnSpan": "Column Span",
+    "columns": "Columns",
+    "columnSpanByBreakpoint": "Column Span by Breakpoint"
   },
   "templates": {
     "singleColumn": "Single Column",

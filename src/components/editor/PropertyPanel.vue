@@ -12,89 +12,118 @@
       </button>
     </div>
     
-    <el-form label-position="top" size="small" class="feishu-form">
-      <el-form-item label="启用状态" class="feishu-form-item">
-        <el-switch v-model="localBlock.enabled" active-color="#165DFF" inactive-color="#E5E6EB" />
-      </el-form-item>
-      
-      <el-form-item label="占位列数" class="feishu-form-item">
-        <el-slider 
-          v-model="localBlock.layout.colSpan" 
-          :min="1" 
-          :max="24" 
-          :marks="{ 6: '1/4', 12: '1/2', 24: '整行' }"
-          :step-stops="[6, 12, 18, 24]"
-        />
-      </el-form-item>
-      
-      <template v-for="(value, key) in localBlock.config" :key="key">
-        <el-form-item :label="getFieldLabel(key)" class="feishu-form-item">
-          <el-input 
-            v-if="typeof value === 'string' && key !== 'color' && key !== 'layout' && key !== 'source'"
-            v-model="localBlock.config[key]"
-            :placeholder="String(value)"
-            size="small"
-          />
-          <el-select 
-            v-else-if="key === 'color'"
-            v-model="localBlock.config[key]"
-            size="small"
-          >
-            <el-option label="主色" value="primary" />
-            <el-option label="成功" value="success" />
-            <el-option label="警告" value="warning" />
-            <el-option label="错误" value="error" />
-          </el-select>
-          <el-switch 
-            v-else-if="typeof value === 'boolean'"
-            v-model="localBlock.config[key]"
-            active-color="#165DFF"
-            inactive-color="#E5E6EB"
-          />
-          <el-input-number
-            v-else-if="typeof value === 'number'"
-            v-model="localBlock.config[key]"
-            size="small"
-            :min="0"
-            :max="100"
-          />
-        </el-form-item>
-      </template>
-      
-      <el-divider class="my-4" />
-      
-      <h4 class="font-medium text-gray-7 mb-3 flex items-center gap-2">
-        <Icon name="Mobile" class="w-4 h-4" />
-        响应式配置
-      </h4>
-      
-      <el-form-item label="各断点列数" class="feishu-form-item">
-        <div class="grid grid-cols-5 gap-2">
-          <div v-for="bp in breakpoints" :key="bp.name" class="text-center">
-            <label class="block text-xs text-gray-6 mb-1">{{ bp.label }}</label>
-            <el-input-number 
-              v-model="localBlock.responsive.colSpan[bp.name]" 
-              :min="1" 
-              :max="24" 
-              size="small"
-              controls-position="right"
+    <el-collapse v-model="activePanels" class="property-collapse">
+      <el-collapse-item name="basic" :title="t('panel.basicSettings')">
+        <el-form label-position="top" size="small">
+          <el-form-item :label="t('panel.enabled')">
+            <el-switch 
+              v-model="localBlock.enabled" 
+              active-color="#165DFF" 
+              inactive-color="#E5E6EB"
+              :active-text="t('panel.enabled')"
+              :inactive-text="t('panel.disabled')"
             />
-          </div>
-        </div>
-      </el-form-item>
-    </el-form>
+          </el-form-item>
+          
+          <el-form-item :label="t('panel.columnSpan')">
+            <div class="w-full">
+              <el-slider 
+                v-model="localBlock.layout.colSpan" 
+                :min="1" 
+                :max="24" 
+                :marks="columnMarks"
+                :step-stops="[6, 12, 18, 24]"
+                :show-tooltip="true"
+              />
+              <div class="text-xs text-gray-6 mt-2 text-center">
+                {{ localBlock.layout.colSpan }} / 24 {{ t('panel.columns') }}
+              </div>
+            </div>
+          </el-form-item>
+        </el-form>
+      </el-collapse-item>
+      
+      <el-collapse-item name="config" :title="t('panel.componentConfig')">
+        <el-form label-position="top" size="small">
+          <template v-for="(value, key) in localBlock.config" :key="key">
+            <el-form-item :label="getFieldLabel(key)">
+              <el-input 
+                v-if="typeof value === 'string' && key !== 'color' && key !== 'layout' && key !== 'source'"
+                v-model="localBlock.config[key]"
+                :placeholder="String(value)"
+                size="small"
+                clearable
+              />
+              <el-select 
+                v-else-if="key === 'color'"
+                v-model="localBlock.config[key]"
+                size="small"
+              >
+                <el-option label="主色" value="primary" />
+                <el-option label="成功" value="success" />
+                <el-option label="警告" value="warning" />
+                <el-option label="错误" value="error" />
+              </el-select>
+              <el-switch 
+                v-else-if="typeof value === 'boolean'"
+                v-model="localBlock.config[key]"
+                active-color="#165DFF"
+                inactive-color="#E5E6EB"
+              />
+              <el-input-number
+                v-else-if="typeof value === 'number'"
+                v-model="localBlock.config[key]"
+                size="small"
+                :min="0"
+                :max="100"
+                controls-position="right"
+              />
+            </el-form-item>
+          </template>
+        </el-form>
+      </el-collapse-item>
+      
+      <el-collapse-item name="responsive" :title="t('panel.responsive')">
+        <el-form label-position="top" size="small">
+          <el-form-item :label="t('panel.columnSpanByBreakpoint')">
+            <div class="grid grid-cols-5 gap-3">
+              <div v-for="bp in breakpoints" :key="bp.name" class="text-center">
+                <div class="flex items-center gap-1 justify-center mb-2">
+                  <Icon name="Mobile" class="w-3 h-3 text-gray-6" />
+                  <label class="text-xs text-gray-6">{{ bp.label }}</label>
+                </div>
+                <el-input-number 
+                  v-model="localBlock.responsive.colSpan[bp.name]" 
+                  :min="1" 
+                  :max="24" 
+                  size="small"
+                  controls-position="right"
+                  class="w-full"
+                />
+              </div>
+            </div>
+          </el-form-item>
+        </el-form>
+      </el-collapse-item>
+    </el-collapse>
     
     <div class="mt-4 pt-4 border-t border-gray-3 flex gap-2">
-      <el-button type="primary" size="small" class="flex-1 !bg-[#165DFF] !border-[#165DFF]" @click="handleSave">
-        应用
+      <el-button 
+        type="primary" 
+        size="small" 
+        class="flex-1 !bg-[#165DFF] !border-[#165DFF]" 
+        @click="handleSave"
+      >
+        {{ t('common.apply') }}
       </el-button>
-      <el-button size="small" @click="handleReset">重置</el-button>
+      <el-button size="small" @click="handleReset">{{ t('common.reset') }}</el-button>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { ref, watch, computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 import Icon from '../common/Icon.vue'
 import type { BlockSchema, Breakpoint } from '../../types/schema.types'
 
@@ -107,15 +136,25 @@ const emit = defineEmits<{
   close: []
 }>()
 
+const { t } = useI18n()
+const activePanels = ref(['basic'])
+
 const breakpoints: { name: Breakpoint; label: string }[] = [
-  { name: 'xs', label: '手机' },
-  { name: 'sm', label: '平板' },
-  { name: 'md', label: '笔记本' },
-  { name: 'lg', label: '桌面' },
-  { name: 'xl', label: '大屏' },
+  { name: 'xs', label: t('editor.responsive.xs') },
+  { name: 'sm', label: t('editor.responsive.sm') },
+  { name: 'md', label: t('editor.responsive.md') },
+  { name: 'lg', label: t('editor.responsive.lg') },
+  { name: 'xl', label: t('editor.responsive.xl') },
 ]
 
 const localBlock = ref<BlockSchema>({ ...props.block })
+
+const columnMarks = computed(() => ({
+  6: '1/4',
+  12: '1/2',
+  18: '3/4',
+  24: '整行'
+}))
 
 watch(() => props.block, (newBlock) => {
   localBlock.value = { ...newBlock }
@@ -123,35 +162,35 @@ watch(() => props.block, (newBlock) => {
 
 const getFieldLabel = (key: string): string => {
   const labelMap: Record<string, string> = {
-    title: '标题',
-    subtitle: '副标题',
-    icon: '图标',
-    trend: '趋势',
-    trendValue: '趋势值',
-    suffix: '后缀',
-    precision: '小数位数',
-    gap: '间距',
-    autoPlay: '自动播放',
-    interval: '播放间隔',
-    maxItems: '最大数量',
-    showPagination: '显示分页',
-    pageSize: '每页条数',
-    stripe: '斑马纹',
-    border: '边框',
-    showRedList: '显示红榜',
-    showBlackList: '显示黑榜',
-    defaultTab: '默认标签',
-    showOrder: '显示排名',
-    showTrend: '显示趋势',
-    categories: '分类列表',
-    columns: '列数',
-    showCategory: '显示分类',
-    showImage: '显示图片',
-    showDate: '显示日期',
-    showSummary: '显示摘要',
-    layout: '布局方式',
-    links: '链接列表',
-    showIcon: '显示图标',
+    title: t('panel.title'),
+    subtitle: t('panel.subtitle'),
+    icon: t('panel.icon'),
+    trend: t('panel.trend'),
+    trendValue: t('panel.trendValue'),
+    suffix: t('panel.suffix'),
+    precision: t('panel.precision'),
+    gap: t('panel.gap'),
+    autoPlay: t('panel.autoPlay'),
+    interval: t('panel.interval'),
+    maxItems: t('panel.maxItems'),
+    showPagination: t('panel.showPagination'),
+    pageSize: t('panel.pageSize'),
+    stripe: t('panel.stripe'),
+    border: t('panel.border'),
+    showRedList: t('panel.showRedList'),
+    showBlackList: t('panel.showBlackList'),
+    defaultTab: t('panel.defaultTab'),
+    showOrder: t('panel.showOrder'),
+    showTrend: t('panel.showTrend'),
+    categories: t('panel.categories'),
+    columns: t('panel.columns'),
+    showCategory: t('panel.showCategory'),
+    showImage: t('panel.showImage'),
+    showDate: t('panel.showDate'),
+    showSummary: t('panel.showSummary'),
+    layout: t('panel.layout'),
+    links: t('panel.links'),
+    showIcon: t('panel.showIcon'),
   }
   return labelMap[key] || key
 }

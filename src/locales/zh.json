@@ -22,12 +22,23 @@
     "untitled": "未命名工作台",
     "empty": {
       "title": "开始构建您的工作台",
-      "description": "从左侧选择组件拖拽到页面，或点击下方按钮快速开始",
+      "description": "从左侧选择组件拖拽到页面，或点击下方选项快速开始",
       "addLayout": "添加布局",
-      "addWidget": "添加组件"
+      "layoutDesc": "创建页面布局容器，可嵌套组件",
+      "addWidget": "添加组件",
+      "widgetDesc": "添加功能模块，如统计卡片、表格等",
+      "tip": "提示：拖拽左侧组件到页面可快速添加"
     },
     "dragHint": "拖拽组件到这里开始构建页面",
     "dropHint": "放置到这里",
+    "emptyPreview": "暂无内容可预览",
+    "emptyPreviewHint": "请先在页面中添加组件",
+    "inputPlaceholder": "请输入",
+    "selectPlaceholder": "请选择",
+    "submitSuccess": "提交成功",
+    "submitWarning": "请完善表单信息",
+    "undone": "已撤销",
+    "redone": "已重做",
     "emptyPage": "暂无页面，点击上方按钮创建",
     "preview": {
       "title": "预览",
@@ -63,7 +74,14 @@
     "media": "媒体组件",
     "settings": "属性设置",
     "responsive": "响应式",
-    "pageSettings": "页面设置"
+    "pageSettings": "页面设置",
+    "basicSettings": "基本设置",
+    "componentConfig": "组件配置",
+    "enabled": "启用",
+    "disabled": "禁用",
+    "columnSpan": "占位列数",
+    "columns": "列",
+    "columnSpanByBreakpoint": "各断点列数"
   },
   "templates": {
     "singleColumn": "单列布局",

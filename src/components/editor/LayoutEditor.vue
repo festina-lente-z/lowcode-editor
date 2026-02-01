@@ -12,6 +12,25 @@
       <div class="flex-1" />
       
       <div class="flex items-center gap-3">
+        <el-button-group>
+          <el-button 
+            size="small" 
+            :disabled="!canUndo"
+            @click="handleUndo"
+            class="!border-[#E5E6EB] !"
+          >
+            <Icon name="Undo" class="w-4 h-4" />
+          </el-button>
+          <el-button 
+            size="small" 
+            :disabled="!canRedo"
+            @click="handleRedo"
+            class="!border-[#E5E6EB] !"
+          >
+            <Icon name="Redo" class="w-4 h-4" />
+          </el-button>
+        </el-button-group>
+        
         <LanguageSwitcher />
         <el-button size="small" @click="handlePreview" class="!border-[#E5E6EB] !text-[#4E5969]">
           <Icon name="View" class="mr-1 w-4 h-4" />{{ t('common.preview') }}
@@ -46,21 +65,56 @@
       
       <main class="flex-1 overflow-auto p-6 bg-[#F7F8FA]">
         <div class="max-w-5xl mx-auto">
-          <div v-if="blocks.length === 0" class="bg-white rounded-xl shadow-sm border border-[#E5E6EB] p-12 text-center">
-            <div class="w-16 h-16 bg-[#F0F5FF] rounded-2xl flex items-center justify-center mx-auto mb-4">
-              <Icon name="Plus" class="w-8 h-8 text-[#165DFF]" />
-            </div>
-            <h3 class="text-lg font-medium text-[#1D2129] mb-2">{{ t('editor.empty.title') }}</h3>
-            <p class="text-[#86909C] mb-6">{{ t('editor.empty.description') }}</p>
-            <div class="flex justify-center gap-3">
-              <el-button type="primary" @click="handleAddLayout">
-                <Icon name="Layout" class="mr-1 w-4 h-4" />{{ t('editor.empty.addLayout') }}
-              </el-button>
-              <el-button @click="handleAddComponent">
-                <Icon name="Component" class="mr-1 w-4 h-4" />{{ t('editor.empty.addWidget') }}
-              </el-button>
-            </div>
-          </div>
+           <div v-if="blocks.length === 0" class="bg-white rounded-2xl shadow-feishu border border-[#] p-16 text">
+             <div class="max-w-md mx-auto">
+               <div class="w-20 h-20 bg-gradient-to-br from-[#F0F5FF] to-[#E8F3FF] rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-sm">
+                 <Icon name="Layout" class="w-10 h-10 text-[#165DFF]" />
+               </div>
+               <h3 class="text-xl font-semibold text-[#1D2129] mb-3">{{ t('editor.empty.title') }}</h3>
+               <p class="text-sm text-[#4E5969] mb-8 leading-relaxed">{{ t('editor.empty.description') }}</p>
+               
+               <div class="space-y-3">
+                 <div 
+                   class="p-4 rounded-xl border-2 border-dashed border-[#E5E6EB] hover:border-[#165DFF] hover:bg-[#F0F5FF] transition-all cursor-pointer group"
+                   @click="handleAddLayout"
+                 >
+                   <div class="flex items-center gap-3">
+                     <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform">
+                       <Icon name="Column" class="w-5 h-5 text-[#165DFF]" />
+                     </div>
+                     <div class="flex-1 text-left">
+                       <p class="text-sm font-medium text-[#1D2129]">{{ t('editor.empty.addLayout') }}</p>
+                       <p class="text-xs text-[#86909C] mt-1">{{ t('editor.empty.layoutDesc') }}</p>
+                     </div>
+                     <Icon name="ArrowRight" class="w-5 h-5 text-[#C9CDD4] group-hover:text-[#165DFF] transition-colors" />
+                   </div>
+                 </div>
+                 
+                 <div 
+                   class="p-4 rounded-xl border-2 border-dashed border-[#E5E6EB] hover:border-[#165DFF] hover:bg-[#F0F5FF] transition-all cursor-pointer group"
+                   @click="handleAddComponent"
+                 >
+                   <div class="flex items-center gap-3">
+                     <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform">
+                       <Icon name="Grid" class="w-5 h-5 text-[#165DFF]" />
+                     </div>
+                     <div class="flex-1 text-left">
+                       <p class="text-sm font-medium text-[#1D2129]">{{ t('editor.empty.addWidget') }}</p>
+                       <p class="text-xs text-[#86909C] mt-1">{{ t('editor.empty.widgetDesc') }}</p>
+                     </div>
+                     <Icon name="ArrowRight" class="w-5 h-5 text-[#C9CDD4] group-hover:text-[#165DFF] transition-colors" />
+                   </div>
+                 </div>
+               </div>
+               
+               <div class="mt-8 pt-6 border-t border-[#E5E6EB]">
+                 <p class="text-xs text-[#86909C] flex items-center justify-center gap-2">
+                   <Icon name="Lightbulb" class="w-4 h-4" />
+                   {{ t('editor.empty.tip') }}
+                 </p>
+               </div>
+             </div>
+           </div>
           
           <div v-else class="space-y-4">
             <div class="flex items-center justify-between mb-2">
@@ -115,7 +169,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { ElMessage } from 'element-plus'
 import { v4 as uuidv4 } from 'uuid'
@@ -129,8 +183,11 @@ import Icon from '../common/Icon.vue'
 import { layoutTemplates, componentTemplates } from '../../constants/templates'
 import type { BlockSchema, PageSettings as PageSettingsType, Breakpoint, JSONSchema } from '../../types/schema.types'
 import type { BlockTemplate } from '../../constants/template.types'
+import { useHistory } from '../../composables/useHistory'
 
 const { t } = useI18n()
+
+const { push: pushHistory, undo: undoHistory, redo: redoHistory, canUndo, canRedo } = useHistory<BlockSchema[]>([])
 
 const maxWidthMap: Record<string, string> = {
   sm: '540px',
@@ -258,8 +315,10 @@ const handleTemplateDrop = (template: any, targetBlockId?: string) => {
     responsive: template.defaultResponsive,
   }
   
-  blocks.value.push(newBlock)
+  const newBlocks = [...blocks.value, newBlock]
+  blocks.value = newBlocks
   selectedBlockId.value = newBlock.id
+  pushHistory(newBlocks, `Add ${template.name}`)
   ElMessage.success(`已添加${template.name}`)
 }
 
@@ -275,19 +334,26 @@ const handleBlockSelect = (block: BlockSchema) => {
 const handleBlockUpdate = (block: BlockSchema) => {
   const index = blocks.value.findIndex(b => b.id === block.id)
   if (index !== -1) {
-    blocks.value[index] = block
+    const newBlocks = [...blocks.value]
+    newBlocks[index] = block
+    blocks.value = newBlocks
+    pushHistory(newBlocks, `Update ${block.name}`)
   }
 }
 
 const handleBlockRemove = (blockId: string) => {
-  blocks.value = blocks.value.filter(b => b.id !== blockId)
+  const newBlocks = blocks.value.filter(b => b.id !== blockId)
+  blocks.value = newBlocks
   if (selectedBlockId.value === blockId) {
     selectedBlockId.value = null
   }
+  pushHistory(newBlocks, 'Remove block')
 }
 
 const handleBlockReorder = (newBlocks: BlockSchema[]) => {
-  blocks.value = newBlocks.map((block, index) => ({ ...block, order: index }))
+  const reordered = newBlocks.map((block, index) => ({ ...block, order: index }))
+  blocks.value = reordered
+  pushHistory(reordered, 'Reorder blocks')
 }
 
 const handlePageSettingsUpdate = (settings: PageSettingsType) => {
@@ -323,5 +389,21 @@ const handlePreviewSubmit = (data: Record<string, any>) => {
 
 const handleSave = () => {
   ElMessage.success('保存成功')
+}
+
+const handleUndo = () => {
+  const state = undoHistory()
+  if (state) {
+    blocks.value = state
+    ElMessage.info(t('editor.undone'))
+  }
+}
+
+const handleRedo = () => {
+  const state = redoHistory()
+  if (state) {
+    blocks.value = state
+    ElMessage.info(t('editor.redone'))
+  }
 }
 </script>

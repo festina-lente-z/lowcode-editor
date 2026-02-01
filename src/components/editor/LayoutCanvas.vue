@@ -1,16 +1,28 @@
 <template>
   <div 
-    class="p-4 min-h-[200px]"
+    class="p-4 min-h-[200px] transition-all duration-200"
     @dragover.prevent="handleDragOver"
     @dragleave="handleDragLeave"
     @drop="handleDrop"
-    :class="{ 'bg-primary-2': isDraggingOver }"
+    :class="containerClass"
   >
-    <div v-if="blocks.length === 0" class="h-40 flex flex-col items-center justify-center text-gray-6">
-      <div class="w-12 h-12 bg-gray-2 rounded-xl flex items-center justify-center mb-3">
-        <Icon name="Plus" class="w-6 h-6 text-gray-5" />
+    <div v-if="blocks.length === 0" class="h-40 flex flex-col items-center justify-center">
+      <div 
+        class="w-14 h-14 rounded-xl flex items-center justify-center mb-3 transition-all duration-200"
+        :class="isDraggingOver ? 'bg-primary-2 scale-110' : 'bg-gray-2'"
+      >
+        <Icon 
+          name="Plus" 
+          class="w-7 h-7 transition-all duration-200"
+          :class="isDraggingOver ? 'text-primary-6' : 'text-gray-5'" 
+        />
       </div>
-      <p class="text-sm text-gray-7">从左侧拖拽组件到这里开始构建页面</p>
+      <p 
+        class="text-sm transition-all duration-200"
+        :class="isDraggingOver ? 'text-primary-6 font-medium' : 'text-gray-7'"
+      >
+        {{ dropHint }}
+      </p>
     </div>
     
     <draggable
@@ -21,7 +33,7 @@
       ghost-class="draggable-ghost"
       drag-class="draggable-drag"
       chosen-class="draggable-chosen"
-      animation="200"
+      animation="300"
       handle=".drag-handle"
       group="blocks"
       @end="handleDragEnd"
@@ -42,7 +54,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { ref, watch, computed } from 'vue'
 import draggable from 'vuedraggable'
 import BlockItem from './BlockItem.vue'
 import Icon from '../common/Icon.vue'
@@ -67,6 +79,15 @@ const emit = defineEmits<{
 const blockList = ref<BlockSchema[]>([])
 const isDraggingOver = ref(false)
 const isExternalDrop = ref(false)
+
+const containerClass = computed(() => ({
+  'bg-gradient-to-r from-primary-1 to-primary-2 border-2 border-dashed border-primary-4 rounded-xl scale-[1.02]': isDraggingOver.value,
+  'bg-transparent': !isDraggingOver.value
+}))
+
+const dropHint = computed(() => {
+  return isDraggingOver.value ? '松开鼠标添加组件' : '从左侧拖拽组件到这里'
+})
 
 watch(() => props.blocks, (newBlocks) => {
   if (!isExternalDrop.value) {
