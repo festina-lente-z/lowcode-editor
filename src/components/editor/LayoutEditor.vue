@@ -384,11 +384,11 @@ const handlePreview = () => {
 
 const handlePreviewSubmit = (data: Record<string, any>) => {
   console.log('Preview submit:', data)
-  ElMessage.success('预览数据提交成功')
+  ElMessage.success(t('editor.previewSubmitSuccess'))
 }
 
 const handleSave = () => {
-  ElMessage.success('保存成功')
+  ElMessage.success(t('editor.saveSuccess'))
 }
 
 const handleUndo = () => {

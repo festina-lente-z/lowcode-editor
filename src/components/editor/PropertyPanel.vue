@@ -59,10 +59,10 @@
                 v-model="localBlock.config[key]"
                 size="small"
               >
-                <el-option label="主色" value="primary" />
-                <el-option label="成功" value="success" />
-                <el-option label="警告" value="warning" />
-                <el-option label="错误" value="error" />
+                <el-option :label="t('panel.colorPrimary')" value="primary" />
+                <el-option :label="t('panel.colorSuccess')" value="success" />
+                <el-option :label="t('panel.colorWarning')" value="warning" />
+                <el-option :label="t('panel.colorError')" value="error" />
               </el-select>
               <el-switch 
                 v-else-if="typeof value === 'boolean'"

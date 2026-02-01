@@ -42,7 +42,7 @@
         class="ml-auto"
         effect="plain"
       >
-        已禁用
+        {{ t('panel.disabled') }}
       </el-tag>
     </div>
     
