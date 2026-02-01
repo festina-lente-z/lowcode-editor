@@ -36,10 +36,16 @@ jobs:
           version: 8
 
       - name: Install dependencies
-        run: pnpm install
+        run: |
+          echo "Installing dependencies..."
+          pnpm install --frozen-lockfile
 
       - name: Build
-        run: pnpm build
+        run: |
+          echo "Building project..."
+          pnpm build
+          echo "Build completed!"
+          ls -la dist
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
