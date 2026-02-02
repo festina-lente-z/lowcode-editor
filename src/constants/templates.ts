@@ -64,6 +64,32 @@ export const layoutTemplates: BlockTemplate[] = [
     }
   },
   {
+    id: 'two-column-mixed',
+    type: 'layout',
+    category: 'layout',
+    name: '双栏混合布局',
+    icon: 'Grid',
+    description: '主次双栏，左宽右窄，适合主内容+侧边栏',
+    defaultLayout: { colSpan: 24 },
+    defaultResponsive: {
+      ...defaultResponsive,
+      colSpan: { xs: 24, sm: 24, md: 24, lg: 24, xl: 24 }
+    },
+    defaultConfig: {
+      gap: 16,
+      leftColSpan: 16,
+      rightColSpan: 8,
+    },
+    configSchema: {
+      type: 'object',
+      properties: {
+        gap: { type: 'number', title: '间距' },
+        leftColSpan: { type: 'number', title: '左栏宽度' },
+        rightColSpan: { type: 'number', title: '右栏宽度' },
+      }
+    }
+  },
+  {
     id: 'three-column',
     type: 'layout',
     category: 'layout',
@@ -82,6 +108,34 @@ export const layoutTemplates: BlockTemplate[] = [
       type: 'object',
       properties: {
         gap: { type: 'number', title: '间距' },
+      }
+    }
+  },
+  {
+    id: 'three-column-mixed',
+    type: 'layout',
+    category: 'layout',
+    name: '三栏混合布局',
+    icon: 'Grid',
+    description: '主次三栏，中宽侧窄，适合导航+主内容+侧边栏',
+    defaultLayout: { colSpan: 24 },
+    defaultResponsive: {
+      ...defaultResponsive,
+      colSpan: { xs: 24, sm: 24, md: 24, lg: 24, xl: 24 }
+    },
+    defaultConfig: {
+      gap: 16,
+      leftColSpan: 5,
+      centerColSpan: 14,
+      rightColSpan: 5,
+    },
+    configSchema: {
+      type: 'object',
+      properties: {
+        gap: { type: 'number', title: '间距' },
+        leftColSpan: { type: 'number', title: '左栏宽度' },
+        centerColSpan: { type: 'number', title: '中栏宽度' },
+        rightColSpan: { type: 'number', title: '右栏宽度' },
       }
     }
   },

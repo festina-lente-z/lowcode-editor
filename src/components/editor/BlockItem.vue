@@ -107,7 +107,9 @@ const getBlockIcon = (type: string): string => {
   const iconMap: Record<string, string> = {
     'single-column': 'Column',
     'two-column': 'Columns',
+    'two-column-mixed': 'Grid',
     'three-column': 'Grid',
+    'three-column-mixed': 'Grid',
     'four-column': 'Grid',
     'stat-card': 'DataLine',
     'search-form': 'Search',

@@ -29,6 +29,8 @@ import AnnouncementCarousel from './AnnouncementCarousel.vue'
 import RankingBoard from './RankingBoard.vue'
 import HyperlinkWall from './HyperlinkWall.vue'
 import SingleColumnLayout from './layouts/SingleColumnLayout.vue'
+import TwoColumnMixedLayout from './layouts/TwoColumnMixedLayout.vue'
+import ThreeColumnMixedLayout from './layouts/ThreeColumnMixedLayout.vue'
 import Icon from '../common/Icon.vue'
 
 const props = defineProps<{
@@ -84,5 +86,7 @@ const componentMap: Record<string, any> = markRaw({
   'ranking-board': RankingBoard,
   'hyperlink-wall': HyperlinkWall,
   'single-column': SingleColumnLayout,
+  'two-column-mixed': TwoColumnMixedLayout,
+  'three-column-mixed': ThreeColumnMixedLayout,
 })
 </script>
